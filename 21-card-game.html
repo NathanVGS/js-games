@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="blackjack.css">
+</head>
+<body>
+<header>
+    <div>
+        Chips: <span class="chips">1000</span>  
+    </div>
+    <div>
+        Money: $<span class="money">10.000</span>
+    </div>
+    <div><select id="buyChips" name="buyChips">
+        <option value="1">1 chip: 10$</option>
+        <option value="5">5 chips: 50$</option>
+        <option value="10">10 chips: 100$</option>
+        <option value="50">50 chips: 500$</option>
+    </select>
+        <input type="button" id="buyChips" value="Buy Chips"></div>
+</header>
+<section id="message"></section>
+<section class="getCard">
+
+    <div class="draw-container"><a href="#">
+        <img src="Img/cardBack.jpg" id="drawCard" alt="Ask for another card" title="Ask for another card"/>
+    </a>
+        <h4>Draw card</h4>
+    </div>
+
+    <div class="end-turn">
+        <a href="#" id="no-card">
+            <img src="Img/nocard.png" alt="No Card" title="End Turn">
+        </a>
+    </div>
+    <div class="stats">
+        <div id="score">Score:</div>
+        <div id="again">
+            <input type="button" id="play-again" value="Play Again">
+        </div>
+        <section id="section-result">
+            <a href="#"><img src="Img/check.png" alt="Check Result" title="Check Result" id="check-result"></a>
+            <h4>Check Result</h4>
+        </section>
+    </div>
+</section>
+
+<section class="hands">
+    <section id="hand">
+        <section>
+            The value of your hand is: <span id="handValue"></span>
+        </section>
+    </section>
+
+    <section id="computerHand">
+        <section id="pcHandMsg">Computer's hand: </section>
+    </section>
+</section>
+
+<script src="blackjack.js"></script>
+</body>
+</html>
