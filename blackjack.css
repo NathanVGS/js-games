@@ -1,12 +1,16 @@
 body {
     font-size: 2rem;
 }
+input, button, select {
+    font-size: 2rem;
+}
 header {
     background-color: black;
+    text-align: center;
     color: white;
     padding: 1rem;
-    display: flex;
-    justify-content: space-between;
+    /*display: flex;
+    justify-content: space-between;*/
 }
 .getCard {
     display: flex;
@@ -23,9 +27,11 @@ header {
 .end-turn {
     width: 25%;
 }
-.stats {
+/*.stats {
     width: 25%;
-}
+    display: flex;
+    align-items: center;
+}*/
 h4 {
     position: absolute;
     background-color: #FFFFFF;
@@ -39,8 +45,12 @@ h4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-#drawCard {
+#drawCard, #no-card img, #section-result {
     height: 20rem;
+    transition: transform 0.5s;
+}
+#drawCard:active, #no-card img:active, #section-result:active {
+    transform: scale(0.8);
 }
 img {
     height: 20rem;
@@ -57,7 +67,11 @@ img {
     font-weight: bold;
 }
 #section-result {
+    width: 100%;
+    position: relative;
     display: none;
+    align-items: center;
+    justify-content: center;
 }
 #check-result {
     position: relative;
@@ -74,5 +88,40 @@ img {
     display: none;
 }
 #again {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /*margin: 0 auto;*/
+    display: none;
+}
+.pcCardUnknown {
+    perspective: 1000px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+.pcCard {
+    transform: rotateY(360deg);
+}
+#play-again, .ruleSection input[type="button"] {
+    margin: 50px;
+    background-color: black;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#play-again:hover {
+    padding: 1.2rem;
+}
+.ruleSection{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+#rules {
+    margin: 20px;
+}
+.togglerules {
     display: none;
 }

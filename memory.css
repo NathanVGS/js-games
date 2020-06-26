@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 2rem;
+}
+header {
+    background-color: #7b00af;
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+}
+.grid {
+    display: grid;
+    width: 648px
+;
+    margin: auto;
+    grid-template-columns: repeat(4, 162px);
+    background-color: black;
+}
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-collapse: collapse;
+    border: 1px solid red;
+}
+input {
+    font-size: 2rem;
+
+}

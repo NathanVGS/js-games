@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    overflow-x: hidden;
+}
+header{
+    background: black;
+    color: #FFFFFF;
+    padding: 1rem;
+    font-size: 2rem;
+    text-align: center;
+}
+#gameCanvas {
+    height: 70vh;
+    position: relative;
+}
+#player {
+    height: 50px;
+    width: 50px;
+    background-image: url("Img/granny.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: rotateY(180deg);
+}
+#spawn {
+    float: right;
+    width: 60px;
+    background: red;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 0.7rem;
+}
+progress {
+    width: 80%;
+    margin: 0 10%;
+    height: 4rem;
+    background: firebrick;
+}
+label {
+    width: 80%;
+    margin: 0 10%;
+    font-size: 2rem;
+}

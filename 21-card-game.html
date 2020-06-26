@@ -6,12 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blackjack</title>
+    <link rel="icon" href="Img/queen_of_hearts2.svg">
     <link rel="stylesheet" href="blackjack.css">
 </head>
 <body>
 <header>
-    <div>
-        Chips: <span class="chips">1000</span>  
+    <h1>Blackjack</h1>
+    <!--<div>
+        Chips: <span class="chips">10</span>
     </div>
     <div>
         Money: $<span class="money">10.000</span>
@@ -22,8 +24,26 @@
         <option value="10">10 chips: 100$</option>
         <option value="50">50 chips: 500$</option>
     </select>
-        <input type="button" id="buyChips" value="Buy Chips"></div>
+        <input type="button" id="buyChips" value="Buy Chips"></div>-->
 </header>
+
+<section class="ruleSection">
+    <input type="button" value="Rules" id="show-rules">
+    <div id="rules" class="togglerules">
+        <p>
+            Try to beat the computer in a race to getting a hand which value is 21 or as close to 21 as possible!
+            If you have more than 21, however, you lose (or draw if the computer also lost).
+        </p>
+        <p>
+            Jack, Queen and King are worth 10, Ace can be either 1 or 11. All other cards are worth the number that's on
+            them.
+            You can draw a card by clicking the card or end your turn by clicking the stop sign.
+        </p>
+        <p>Then you check the result by clicking on the green checkmark.
+            The computer's cards will be revealed and you'll know whether you emerge victorious or humiliated!</p>
+    </div>
+</section>
+
 <section id="message"></section>
 <section class="getCard">
 
@@ -38,16 +58,18 @@
             <img src="Img/nocard.png" alt="No Card" title="End Turn">
         </a>
     </div>
-    <div class="stats">
-        <div id="score">Score:</div>
-        <div id="again">
-            <input type="button" id="play-again" value="Play Again">
-        </div>
-        <section id="section-result">
-            <a href="#"><img src="Img/check.png" alt="Check Result" title="Check Result" id="check-result"></a>
-            <h4>Check Result</h4>
-        </section>
+    <section id="section-result">
+        <a href="#"><img src="Img/check.png" alt="Check Result" title="Check Result" id="check-result"></a>
+        <h4>Check Result</h4>
+    </section>
+
+    <div id="again">
+        <input type="button" id="play-again" value="Play Again">
     </div>
+    <!--<div class="stats">
+        <div id="score">Score:</div>
+
+    </div>-->
 </section>
 
 <section class="hands">
