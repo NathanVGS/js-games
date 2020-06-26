@@ -3,6 +3,3 @@ Finished game at:
 
 
 
-Assignment:
-
-If you have more than 21, however, you lose (or draw if the computer also lost).
