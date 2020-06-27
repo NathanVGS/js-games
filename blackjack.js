@@ -47,6 +47,7 @@
       img.classList.add("pcCardUnknown");
       img.setAttribute("data-image", cardArray[index]);
       let value = getCardValue(cardArray[index], "pc");
+      cardArray.splice(index, 1);
       pcCount += value;
       el.appendChild(img);
       console.log(pcCount);
@@ -59,6 +60,9 @@
          computerAceArray.push(newValue);
          aces--;
       }
+      if(computerAceArray.some )
+      if(computerAceArray.some(x => x === 21)) return;
+      if(computerAceArray.some(x => x >= 18) && computerAceArray.some(x => x < 22)) return;
       if(pcCount >= 21) return;
       if(pcCount < 15) computerDraw();
       if(pcCount === 15 && Math.round(Math.random())) computerDraw();
@@ -151,8 +155,10 @@
       let hand = document.getElementById("handValue");
       hand.innerText = playerCount;
       let aces = playerAces;
+      let newHandValue = playerCount;
       while(aces > 0){
-         hand.innerText += ` / ${playerCount+10}`;
+         newHandValue += 10;
+         hand.innerText += ` / ${newHandValue}`;
          aces--;
       }
       document.getElementById("hand").appendChild(img);
@@ -165,7 +171,7 @@
       if(!computerHasDrawn){
          computerDraw();
          message.innerText = "The computer has drawn";
-      }
+      } else message.innerText = "Both players have drawn, check the result!"
       document.getElementById("section-result").style.display = "flex";
       document.querySelector(".end-turn").style.display = "none";
       document.querySelector(".draw-container").style.display = "none";
