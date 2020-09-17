@@ -1,0 +1,207 @@
+<html>
+    <head>
+        <title>Galgje</title>
+        <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQSCxdW225E7Lfu891CTZGKAipmD5IaiKD2KPDNpivsflNB23C_">
+        <style>
+            body{
+                background-color:cadetblue;
+                text-align: center;
+                font-size: 20px;
+            }
+            #submitbtn {
+                font-size: 16px;
+            }
+            #gallows {
+                margin-top: 10%;
+            }
+            #head,#trunk,#lleg,#rleg,#larm,#rarm, #guess {
+                visibility: hidden;
+                stroke: white;stroke-width: 3;
+            }
+            .df {
+                visibility: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="submitword">
+            <input type="text" id="inputword">
+            <br/>
+            <input type="submit" value="Speel met dit woord" id="submitbtn">
+        </div>
+        <div id="guess">
+            <input id="inputletter" name="inputletter" type="text"> <button id="letter">RAAD LETTER</button>
+        </div>
+        <div id="word"></div>
+        <div id="gallows">
+            <svg height=305>
+                <polyline id="g1" points="300,300 20,300 20,20 150,20 150,60" 
+                style="fill:none; stroke:brown;stroke-width: 6;"/>
+                <line id="g2" x1="20" y1="90" x2="90" y2="20" style="stroke:brown;stroke-width: 6;"/>
+                <ellipse id="head" cx=150 cy=90 ry=25 rx=20 fill="white"/>
+                <line id="trunk" x1="150" y1="115" x2="150" y2="195" style="stroke: white;stroke-width: 3;"/>
+                <line id="lleg" x1="130" y1="275" x2="150" y2="195" style="stroke: white;stroke-width: 3;"/>
+                <line id="rleg" x1="170" y1="275" x2="150" y2="195" style="stroke: white;stroke-width: 3;"/>
+                <line id="larm" x1="130" y1="185" x2="150" y2="125" style="stroke: white;stroke-width: 3;"/>
+                <line id="rarm" x1="170" y1="185" x2="150" y2="125" style="stroke: white;stroke-width: 3;"/>
+                <path class="df" d="M 138 102 Q 150 90 162 102" stroke="red" stroke-width= "3" fill="transparent"/>
+                <path class="df" d="M 138 84 L 144 78 " stroke="red" stroke-width= "2"/>
+                <path class="df" d="M 138 78 L 144 84" stroke="red" stroke-width= "2"/>
+                <path class="df" d="M 162 84 L 156 78" stroke="red" stroke-width= "2"/>
+                <path class="df" d="M 162 78 L 156 84" stroke="red" stroke-width= "2"/>
+
+
+            </svg>
+        </div>
+        <div id="msg"></div>
+        <button onclick="location.reload()">RELOAD</button>
+        <script>
+            //window.onload=function(){
+            const submit = document.getElementById("submitbtn");
+            const submitdiv = document.getElementById("submitword");
+            const _word = document.getElementById("word");
+            const gallows = document.getElementById("gallows");
+            const guessletter = document.getElementById("guess");
+            const msg = document.getElementById("msg");
+            const head = document.getElementById("head");
+            const trunk = document.getElementById("trunk");
+            const larm = document.getElementById("larm");
+            const rarm = document.getElementById("rarm");
+            const lleg = document.getElementById("lleg");
+            const rleg = document.getElementById("rleg");
+            const g1 = document.getElementById("g1");
+            const g2 = document.getElementById("g2");
+            let word;
+            let wordArray = [];
+            const guessedl = document.getElementById("letter");
+            const inputl = document.getElementById("inputletter");
+            const inputword = document.getElementById("inputword");
+            let wrongs = 0;
+            let triedArray = []; // add letters that were wrong in here
+            
+            inputword.focus();
+            submit.addEventListener("click", Submitter);
+            guessedl.addEventListener("click", CheckLetter);
+            inputword.addEventListener("keyup", function(event) {
+                if (event.keyCode === 13) {
+                Submitter();}});
+            inputl.addEventListener("keyup", function(event) {
+                if (event.keyCode === 13) {
+                CheckLetter();
+    }
+});
+            
+            function Submitter(){
+                preword = document.getElementById("inputword").value;
+                word = preword.toUpperCase();
+                if(word.length <= 20){
+                    Start(word.length);
+                } else alert ("Woord te lang, max 20 letters");
+            }
+
+            function Start(length){
+                for(let i = 0; i < length; i++){
+                    submitdiv.style = "visibility: hidden";
+                    guessletter.style= "visibility: visible";
+                    inputl.focus();
+                    _word.innerHTML += "_ ";
+                    wordArray.push("_");
+                    }
+            }
+
+            function CheckLetter(){
+                if(inputl.value.length < 2 && inputl.value.length > 0){
+                    _word.innerHTML = "";
+                let right = false;
+                for (let i = 0; i < word.length; i++){
+                    if(word[i] == inputl.value.toUpperCase()){
+                        wordArray[i] = inputl.value;
+                        right = true;
+                    }
+                }
+                for (let j = 0; j < word.length; j++){
+                        _word.innerHTML += wordArray[j].toUpperCase() + " ";
+                    }
+                let _check = 0;
+                for (let j = 0; j < word.length; j++){
+                    if(wordArray[j] == "_"){
+                        _check++;}
+                }
+                if(_check == 0){
+					//right=true;
+                    GameOver(1);
+                }
+                if (triedArray.includes(inputl.value)){
+                    alert("Je hebt deze letter al geprobeerd, kies een andere");
+                    right = true;
+                }
+                right ? wrongs : Wrong();
+                inputl.value = "";
+                } else {
+                    alert("Vul 1 letter in aub (ij bvb. bestaat uit 2 letters i en j)");
+                    inputl.value=""; inputl.focus();}
+                inputl.focus();
+            }
+
+            function Wrong(){
+                triedArray.push(inputl.value);
+                if(triedArray.length == 1){
+                    msg.innerHTML += "Deze letters zaten niet in het woord: <br />";
+                }
+                msg.innerHTML += inputl.value.toUpperCase() + " "; //no need for the array??
+                wrongs++;
+                Switcher(wrongs)
+            }
+            function Switcher(wrongs){
+                switch(wrongs){
+                    case 1:
+                        head.style = "visibility: visible";
+                        break;
+                    case 2:
+                        trunk.style = "visibility: visible";
+                        break;
+                    case 3: 
+                        larm.style = "visibility: visible";
+                        break;
+                    case 4:
+                        rarm.style = "visibility: visible";
+                        break;
+                    case 5: 
+                        lleg.style = "visibility: visible";
+                        break;
+                    case 6:
+                        rleg.style = "visibility: visible";
+                        break;
+                    case 7: GameOver(0);
+                }
+            }
+
+            function GameOver(result){
+                if(result === 0){
+                    const face = document.getElementsByClassName("df");
+                    for (let i=0; i<face.length; i++){
+                        face[i].style = "visibility: visible";
+                    }
+                    msg.innerHTML +="<br />Je hebt het helaas niet overleefd, het woord was " + word.toUpperCase();
+                } else {
+                    msg.innerHTML += "<br /> Je hebt gewonnen, proficiat!"
+                    g1.style = "visibility: hidden";
+                    g2.style = "visibility: hidden";
+                    rarm.y1.baseVal.value = 75; //for some reason you need to use this
+                    rarm.x1.baseVal.value = 210;
+                    rarm.y2.baseVal.value = 130
+                    larm.x1.baseVal.value = 90;
+                    larm.y2.baseVal.value = 130;
+                    larm.y1.baseVal.value = 75;
+                    wrongs = 0;
+                    for(let i = 1; i < 7; i++){
+                        wrongs++;
+                        Switcher(wrongs);}
+
+                }
+                guessletter.style = "visibility: hidden"
+            }
+            //}
+        </script>
+    </body>
+</html>
