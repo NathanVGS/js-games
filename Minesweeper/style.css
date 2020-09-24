@@ -1,4 +1,4 @@
-body { aro
+body {
     margin: 0;
     background-color: #000000;
     color: #FFFFFF;
@@ -15,7 +15,7 @@ header {
     display: grid;
     height: 70vh;
     grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 1fr;
+    grid-template-rows: repeat(10, 1fr);
 }
 .cell {
     z-index: 2;
@@ -66,4 +66,9 @@ header {
 }
 .eight {
     color: #808080;
+}
+#restart-hidden {
+    display: none;
+    margin: auto;
+    text-align: center;
 }

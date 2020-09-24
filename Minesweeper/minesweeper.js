@@ -167,7 +167,11 @@
             if(bombArr[index] === "X"){
                 child.classList.add("mine")
                 setTimeout(() => {
-                    console.log("GAME OVER!")
+                    console.log("GAME OVER!");
+                    document.getElementById("restart-hidden").style.display = "block";
+                    document.getElementById("restart").addEventListener("click", () => {
+                        location.reload();
+                    })
                 }, 100)
             } else {
                 child.classList.add("clicked")
